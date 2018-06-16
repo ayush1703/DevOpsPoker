@@ -72,7 +72,7 @@ class PokerPlayerAPI(Resource):
 	total = self.combine_cards(data)
 	return one_pair(total)
 
-    def combine_cards(data):
+    def combine_cards(self,data):
 	total_cards = data['hand']
 	return total_cards
     
