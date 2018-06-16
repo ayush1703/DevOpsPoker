@@ -65,13 +65,19 @@ class PokerPlayerAPI(Resource):
     #
     # @return a dictionary containing the following values
     #         bid  : a number between 0 and max_bid
-   def __get_bid(self, data):
-		total = self.combine_cards(data)
-		return one_pair(total)
 	
+	
+	
+    def __get_bid(self, data):
+	total = self.combine_cards(data)
+	return one_pair(total)
+
+    def combine_cards(data):
+	total_cards = data['hand'] + data['board']
+	return total_cards
     
 	
-   def one_pair(self, data):
+    def one_pair(self, data):
         min_bid = data['min_bid']
         max_bid = data['max_bid']
         unique = []
@@ -89,14 +95,13 @@ class PokerPlayerAPI(Resource):
 			return max_bid
 		else:
 			return min_bid
-def combine_cards(data):
-    total_cards = data['hand'] + data['board']
-	return total_cards
-				   
+			   
 		
-		
-       
-    
+	    
+	
+	
+	
+	   
     # -------------------------------------------------------------- do not change behind this line
     # dispatch incoming get commands
     def get(self, command_id):
@@ -155,5 +160,4 @@ example:
 # run the main function
 if __name__ == '__main__':
     main()
-
 
