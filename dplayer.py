@@ -66,14 +66,8 @@ class PokerPlayerAPI(Resource):
     # @return a dictionary containing the following values
     #         bid  : a number between 0 and max_bid
 	
-	
-	
-    def __get_bid(self, data):
-	total = self.combine_cards(data)
-	return one_pair(total)
-
     def combine_cards(self,data):
-	total_cards = data['hand']
+	total_cards = data['hand'] + data['board']
 	return total_cards
     
 	
@@ -96,7 +90,13 @@ class PokerPlayerAPI(Resource):
 		else:
 			return min_bid
 			   
-		
+			
+	
+    def __get_bid(self, data):
+	total = self.combine_cards(data)
+	return self.one_pair(total)
+
+
 	    
 	
 	
