@@ -66,8 +66,11 @@ class PokerPlayerAPI(Resource):
     # @return a dictionary containing the following values
     #         bid  : a number between 0 and max_bid
     def __get_bid(self, data):
-        
-        return 0
+        min_bid = data['min_bid']
+        return min_bid
+	
+		
+       
     
     # -------------------------------------------------------------- do not change behind this line
     # dispatch incoming get commands
