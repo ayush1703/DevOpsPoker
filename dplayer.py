@@ -65,10 +65,35 @@ class PokerPlayerAPI(Resource):
     #
     # @return a dictionary containing the following values
     #         bid  : a number between 0 and max_bid
-    def __get_bid(self, data):
-        min_bid = data['min_bid']
-        return min_bid
+   def __get_bid(self, data):
+		total = self.combine_cards(data)
+		return one_pair(data)
 	
+    
+	
+   def one_pair(self, data):
+        min_bid = data['min_bid']
+        max_bid = data['max_bid']
+        unique = []
+        count = 1
+        for ele in data:
+		if ele[0] not in unique:
+			unique.append(ele[0])
+		else:
+			count=count+1
+		if(count == 2):
+			return min_bid*2
+		elif(count == 3):
+			return min_bid*4
+		elif(count == 4):
+			return max_bid
+		else:
+			return min_bid
+def combine_cards(data):
+    total_cards = data['hand'] + data['board']
+	return total_cards
+				   
+		
 		
        
     
