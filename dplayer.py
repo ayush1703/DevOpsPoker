@@ -71,12 +71,12 @@ class PokerPlayerAPI(Resource):
 	return total_cards
     
 	
-    def one_pair(self, data):
+    def one_pair(self, total, data):
         min_bid = data['min_bid']
         max_bid = data['max_bid']
         unique = []
         count = 1
-        for ele in data:
+        for ele in total:
 		if ele[0] not in unique:
 			unique.append(ele[0])
 		else:
@@ -93,8 +93,8 @@ class PokerPlayerAPI(Resource):
 			
 	
     def __get_bid(self, data):
-	total = self.combine_cards(data)
-	return self.one_pair(total)
+	total = self.combine_cards(self, data)
+	return self.one_pair(self, total, data)
 
 
 	    
