@@ -67,7 +67,7 @@ class PokerPlayerAPI(Resource):
     #         bid  : a number between 0 and max_bid
    def __get_bid(self, data):
 		total = self.combine_cards(data)
-		return one_pair(data)
+		return one_pair(total)
 	
     
 	
